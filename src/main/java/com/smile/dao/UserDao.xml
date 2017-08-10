@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.dao.UserDao">
+
+    <resultMap id="user" type="com.smile.domain.UserBean">
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userAge" column="user_age"/>
+        <result property="userGender" column="user_gender"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userAddress" column="user_address"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="UserBean"
+            useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        insert into user_sm (user_id,user_name,user_age,user_gender,user_address,user_email)
+        VALUES (null,#{userName},#{userAge},#{userGender},#{userAddress},#{userEmail});
+    </insert>
+
+    <update id="update" parameterType="UserBean">
+        update user_sm set user_name = #{userName},user_age = #{userAge}
+        ,user_gender = #{userGender},user_address = #{userAddress},user_Email = #{userEmail}
+        where user_id = #{userId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete FROM  user_sm where user_id = #{userId};
+    </delete>
+
+    <select id="queryById" parameterType="int" resultMap="user">
+        select user_id,user_name,user_age,user_gender,user_address,user_email from user_sm
+        where user_id = #{userId};
+    </select>
+
+    <select id="queryAll" resultMap="user">
+        select user_id,user_name,user_age,user_gender,user_address,user_email from user_sm;
+    </select>
+</mapper>
