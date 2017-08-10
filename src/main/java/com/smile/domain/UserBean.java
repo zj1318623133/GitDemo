@@ -59,15 +59,4 @@ public class UserBean {
         this.userAddress = userAddress;
     }
 
-    @Override
-    public String toString() {
-        return "UserBean{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userAge=" + userAge +
-                ", userGender='" + userGender + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userAddress='" + userAddress + '\'' +
-                '}';
-    }
 }
